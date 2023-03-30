@@ -1,0 +1,16 @@
+1. Compile master server classes and run master server on dc15
+    - cd masterServer
+    - run "javac Main.java ServerThread.java"
+    - start server "java Main"
+
+2. Compile server and run seven server on dc01-dc07
+    - cd server
+    - run "javac Main.java ServerThread.java"
+    - start server "java Main"
+
+3. Compile clients and run five clients on dc08-dc12
+    - cd client
+    - run "javac Main.java"
+    - start client "java Main ${clientnumber}"
+
+

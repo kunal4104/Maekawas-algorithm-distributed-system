@@ -53,16 +53,9 @@ public class ServerThread extends Thread {
     @Override
     public void run() {
         try {
-            //Reading the input from Client
             BufferedReader input = new BufferedReader( new InputStreamReader(socket.getInputStream()));
-            //returning the output to the client : true statement is to flush the buffer otherwise
-            //we have to do it manuallyy
             output = new PrintWriter(socket.getOutputStream(),true);
-            // boolean grantSent = false;
 
-
-            //inifite loop for server
-            // while(!grantSent) {
             String outputString = input.readLine();
 
             System.out.println("Server received " + outputString);
@@ -72,9 +65,6 @@ public class ServerThread extends Thread {
             } else {
             String[] outputArr = outputString.split(" ");
             if (outputArr[0].equals("RELEASE")) {
-                //remove client from pq
-                //if client at top of the pq
-                //send GRANT to next client
                 System.out.println("got release from "+ outputArr[2]);
 
                 boolean isTop = removeItem(Integer.parseInt(outputArr[2]));
@@ -118,15 +108,3 @@ public class ServerThread extends Thread {
         }
     }
 }
-// }
-
-// class QueueObject {
-//     public long timeStamp;
-//     public int clientNum;
-//     public Socket socket;
-//     public QueueObject (long timestamp, int clientNum, Socket socket) {
-//         this.timeStamp = timeStamp;
-//         this.clientNum = clientNum;
-//         this.socket = socket;
-//     }
-// }

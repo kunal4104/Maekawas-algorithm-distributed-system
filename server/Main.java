@@ -5,9 +5,6 @@ import java.util.*;
 public class Main {
 
     public static void main(String[] args) {
-        //using serversocket as argument to automatically close the socket
-        //the port number is unique for each server
-
         //list to add all the clients thread
         ArrayList<ServerThread> threadList = new ArrayList<>();
 
@@ -16,14 +13,11 @@ public class Main {
         try (ServerSocket serversocket = new ServerSocket(8000)){
             StateObj serverState = new StateObj(serversocket);
             while(true) {
-                System.out.println("here");
                 Socket socket = serversocket.accept();
                 ServerThread serverThread = new ServerThread(socket, threadList, serverState);
-                //starting the thread
                 threadList.add(serverThread); 
+                //starting the thread
                 serverThread.start();
-
-                //get all the list of currently running thread
 
             }
         } catch (Exception e) {

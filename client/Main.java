@@ -29,7 +29,7 @@ public class Main {
             String timeStmp = String.valueOf(timeMilli);
 
             System.out.println("Entering: "+clientState.clientNum+" timestamp:"+timeStmp + " exec num:"+clientState.criticalExecs +" latency: "+diffLat+" message exchanges: "+ msgEx);
-            Thread.sleep(5000);
+            Thread.sleep(3000);
             System.out.println("Exiting Critical section!");
         } catch (Exception e) {
             System.out.println("Exception occured in client main: " + e);
