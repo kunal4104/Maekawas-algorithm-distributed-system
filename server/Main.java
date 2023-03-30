@@ -11,11 +11,12 @@ public class Main {
         //list to add all the clients thread
         ArrayList<ServerThread> threadList = new ArrayList<>();
 
-        StateObj serverState = new StateObj();
 
 
         try (ServerSocket serversocket = new ServerSocket(8000)){
+            StateObj serverState = new StateObj(serversocket);
             while(true) {
+                System.out.println("here");
                 Socket socket = serversocket.accept();
                 ServerThread serverThread = new ServerThread(socket, threadList, serverState);
                 //starting the thread
@@ -50,9 +51,11 @@ class StateObj {
         }
     });
     static volatile boolean isLocked = false;
+    static volatile ServerSocket serverSocket;
     static volatile QueueObject topClient = null;
 
 
-    public StateObj() {
+    public StateObj(ServerSocket serverSocket) {
+        this.serverSocket = serverSocket;
     }
 }

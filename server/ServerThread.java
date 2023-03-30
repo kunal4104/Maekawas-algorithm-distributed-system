@@ -64,18 +64,13 @@ public class ServerThread extends Thread {
             //inifite loop for server
             // while(!grantSent) {
             String outputString = input.readLine();
-            //if user types exit command
-            // if(outputString.equals("exit")) {
-            //     break;
-            // }
 
-            String[] outputArr = outputString.split(" ");
-
-            // printToALlClients(outputString);
-            // output.println("server sends " + outputString);
-            // output.println("Server says " + outputString);
             System.out.println("Server received " + outputString);
 
+            if (outputString.equals("COMPLETE")) {
+                serverState.serverSocket.close();
+            } else {
+            String[] outputArr = outputString.split(" ");
             if (outputArr[0].equals("RELEASE")) {
                 //remove client from pq
                 //if client at top of the pq
@@ -115,8 +110,8 @@ public class ServerThread extends Thread {
                     sendGrant(serverState.topClient.socket);
                 }
             }
-
-                // }
+            // }
+            } 
         }
         catch (Exception e) {
             System.out.println("Error occured run: " +e);
